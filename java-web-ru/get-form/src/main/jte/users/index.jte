@@ -11,20 +11,7 @@
         </form>
 
     @if(!page.getUsers().isEmpty())
-<%--        <table>--%>
-<%--            <tr>--%>
-<%--                <th>Id</th>--%>
-<%--                <th>Name</th>--%>
-<%--                <th>Email</th>--%>
-<%--            </tr>--%>
-            @for(var user : page.getUsers())
-                <tr>
-                    <th>${user.getId()}</th>
-                    <th><a href="/users/${user.getId()}">${user.getFirstName()} ${user.getLastName()}</a></th>
-                    <th>${user.getEmail()}</th>
-                </tr>
-            @endfor
-        </table>
+        ${page.getUsers().toString()}
     @endif
     `
 )
