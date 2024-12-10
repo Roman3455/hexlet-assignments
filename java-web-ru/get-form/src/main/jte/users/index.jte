@@ -11,12 +11,12 @@
         </form>
 
     @if(!page.getUsers().isEmpty())
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
+<%--        <table>--%>
+<%--            <tr>--%>
+<%--                <th>Id</th>--%>
+<%--                <th>Name</th>--%>
+<%--                <th>Email</th>--%>
+<%--            </tr>--%>
             @for(var user : page.getUsers())
                 <tr>
                     <th>${user.getId()}</th>
