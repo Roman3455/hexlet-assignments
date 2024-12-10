@@ -35,7 +35,7 @@ public final class App {
                         .filter(user -> user.getFirstName().toLowerCase().startsWith(term.toLowerCase()))
                         .collect(Collectors.toCollection(ArrayList::new));
             } else {
-                users = new ArrayList<>(0);
+                users = new ArrayList<>(USERS);
             }
 
             var page = new UsersPage(users, term);
