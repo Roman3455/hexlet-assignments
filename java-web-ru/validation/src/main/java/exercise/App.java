@@ -42,11 +42,11 @@ public final class App {
             String content;
             try {
                 title = ctx.formParamAsClass("title", String.class)
-                        .check(ArticleRepository::existsByTitle, "This article already exists")
-                        .check(value -> value.length() >= 2, "Title length must be more than 2 symbol")
+                        .check(v -> v.length() > 2, "Title length must be more than 2 symbol")
+                        .check(v -> !ArticleRepository.existsByTitle(v), "This article already exists")
                         .get();
                 content = ctx.formParamAsClass("content", String.class)
-                        .check(value -> value.length() >= 10, "Content must be more than 10 symbols")
+                        .check(v -> v.length() > 10, "Content length must be more than 10 symbols")
                         .get();
                 var article = new Article(title, content);
                 ArticleRepository.save(article);
