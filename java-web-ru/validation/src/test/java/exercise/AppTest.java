@@ -135,6 +135,8 @@ class AppTest {
         String body = response2.getBody();
         assertThat(body).contains("test article");
         assertThat(body).contains("test content 2");
+
+
         assertThat(body).contains("Статья с таким названием уже существует");
 
         List<Article> articles = ArticleRepository.search("test article");

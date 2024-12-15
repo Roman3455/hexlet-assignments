@@ -15,11 +15,11 @@
 
         <form action="/articles" method="post">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name="title">
+                <input type="text" class="form-control" id="floatingInput" name="title" value="${page.getTitle()}">
                 <label for="floatingInput">Title</label>
             </div>
             <div class="form-floating">
-            <textarea class="form-control" id="floatingTextarea" style="height: 100px" name="content"></textarea>
+            <textarea class="form-control" id="floatingTextarea" style="height: 100px" name="content" value="${page.getContent()}"></textarea>
                 <label for="floatingTextarea">Content</label>
             </div>
             <input type="submit" class="btn btn-primary" value="Submit"/>

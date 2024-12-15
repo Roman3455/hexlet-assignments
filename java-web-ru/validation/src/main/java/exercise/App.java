@@ -1,7 +1,6 @@
 package exercise;
 
 import io.javalin.Javalin;
-//import io.javalin.http.UnprocessableContentResponse;
 import io.javalin.validation.ValidationException;
 import java.util.List;
 import exercise.model.Article;
@@ -42,11 +41,12 @@ public final class App {
             String content;
             try {
                 title = ctx.formParamAsClass("title", String.class)
-                        .check(v -> v.length() > 2, "Title length must be more than 2 symbol")
-                        .check(v -> !ArticleRepository.existsByTitle(v), "This article already exists")
+                        .check(v -> !ArticleRepository.existsByTitle(v),
+                                "Статья с таким названием уже существует")
+                        .check(v -> v.length() > 2, "Название не должно быть короче двух символов")
                         .get();
                 content = ctx.formParamAsClass("content", String.class)
-                        .check(v -> v.length() > 10, "Content length must be more than 10 symbols")
+                        .check(v -> v.length() > 10, "Статья должна быть не короче 10 символов")
                         .get();
                 var article = new Article(title, content);
                 ArticleRepository.save(article);
@@ -55,7 +55,7 @@ public final class App {
                 title = ctx.formParam("title");
                 content = ctx.formParam("content");
                 var page = new BuildArticlePage(title, content, e.getErrors());
-                ctx.render("articles/build.jte", model("page", page));
+                ctx.status(422).render("articles/build.jte", model("page", page));
             }
         });
         // END
